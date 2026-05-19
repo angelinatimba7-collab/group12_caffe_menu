@@ -1,4 +1,3 @@
-// eel / @jebb_24
 // +++ Cafe-Menu +++
 // Aplikasi Katalog Menu Digital Cafe — Tugas Besar Algoritma Pemrograman 2
 // Dengan tampilan terminal berwarna dan menarik
@@ -15,9 +14,7 @@ import (
 	"time"
 )
 
-// ===================== ANSI COLOR CODES =====================
-
-// Kode warna ANSI untuk tampilan terminal yang indah (claude)
+// Kode warna ANSI untuk tampilan terminal yang indah (Angelina)
 const (
 	Reset = "\033[0m"
 	Bold  = "\033[1m"
@@ -46,7 +43,7 @@ const (
 
 // ===================== STRUCT =====================
 
-// MenuItem menyimpan semua data setiap item menu cafe (claude)
+// MenuItem menyimpan semua data setiap item menu cafe (Putri)
 type MenuItem struct {
 	ID        int
 	Nama      string
@@ -58,29 +55,29 @@ type MenuItem struct {
 
 // ===================== VARIABEL GLOBAL =====================
 
-// daftarMenu adalah slice utama penyimpanan semua menu (claude)
+// daftarMenu adalah slice utama penyimpanan semua menu (Syifa)
 var daftarMenu []MenuItem
 var nextID = 1
 var reader = bufio.NewReader(os.Stdin)
 
 // ===================== HELPER =====================
 
-// colorize membungkus teks dengan warna ANSI (claude)
+// colorize membungkus teks dengan warna ANSI (Angelina)
 func colorize(color, text string) string {
 	return color + text + Reset
 }
 
-// clearScreen membersihkan layar terminal (claude)
+// clearScreen membersihkan layar terminal (Putri)
 func clearScreen() {
 	fmt.Print("\033[H\033[2J")
 }
 
-// sleep menunggu selama n milidetik (claude)
+// sleep menunggu selama n milidetik (Syifa)
 func sleep(ms int) {
 	time.Sleep(time.Duration(ms) * time.Millisecond)
 }
 
-// printSlow mencetak teks karakter per karakter seperti efek mengetik (claude)
+// printSlow mencetak teks karakter per karakter seperti efek mengetik (Angelina)
 func printSlow(text string, delay int) {
 	for _, ch := range text {
 		fmt.Print(string(ch))
@@ -88,14 +85,14 @@ func printSlow(text string, delay int) {
 	}
 }
 
-// bacaString membaca input string dari pengguna (claude)
+// bacaString membaca input string dari pengguna (Putri)
 func bacaString(prompt string) string {
 	fmt.Print(colorize(BrightCyan, "  ❯ ") + colorize(BrightWhite, prompt))
 	text, _ := reader.ReadString('\n')
 	return strings.TrimSpace(text)
 }
 
-// bacaInt membaca input integer dengan validasi (claude)
+// bacaInt membaca input integer dengan validasi (Syifa)
 func bacaInt(prompt string) int {
 	for {
 		fmt.Print(colorize(BrightYellow, "  ❯ ") + colorize(BrightWhite, prompt))
@@ -109,7 +106,7 @@ func bacaInt(prompt string) int {
 	}
 }
 
-// bacaFloat membaca input float64 dengan validasi (claude)
+// bacaFloat membaca input float64 dengan validasi (Angelina)
 func bacaFloat(prompt string) float64 {
 	for {
 		fmt.Print(colorize(BrightCyan, "  ❯ ") + colorize(BrightWhite, prompt))
@@ -123,7 +120,7 @@ func bacaFloat(prompt string) float64 {
 	}
 }
 
-// bacaBool membaca pilihan ya/tidak dari pengguna (claude)
+// bacaBool membaca pilihan ya/tidak dari pengguna (Putri)
 func bacaBool(prompt string) bool {
 	for {
 		input := strings.ToLower(bacaString(prompt + " (y/n): "))
@@ -138,12 +135,12 @@ func bacaBool(prompt string) bool {
 
 // ===================== TAMPILAN =====================
 
-// animasiSplash menampilkan splash screen animasi saat pertama buka (claude)
+// animasiSplash menampilkan splash screen animasi saat pertama buka (Syifa)
 func animasiSplash() {
 	clearScreen()
 	sleep(100)
 
-	// logo ASCII art untuk tampilan splash screen (claude)
+	// logo ASCII art untuk tampilan splash screen (Angelina)
 	logo := []string{
 		``,
 		`   ██████╗ █████╗ ███████╗███████╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗`,
@@ -156,7 +153,7 @@ func animasiSplash() {
 	}
 
 	colors := []string{BrightRed, BrightYellow, BrightGreen, BrightCyan, BrightBlue, BrightMagenta, BrightWhite}
-	// menampilkan logo dengan warna berbeda tiap baris untuk efek pelangi (claude)
+	// menampilkan logo dengan warna berbeda tiap baris untuk efek pelangi (Putri)
 	for i, line := range logo {
 		fmt.Println(colorize(colors[i%len(colors)], line))
 		sleep(60)
@@ -166,7 +163,7 @@ func animasiSplash() {
 	fmt.Println(colorize(Dim, "   Tugas Besar Algoritma Pemrograman 2  |  eel / @jebb_24"))
 	fmt.Println()
 
-	// menampilkan animasi loading bar sebanyak 20 langkah (claude)
+	// menampilkan animasi loading bar sebanyak 20 langkah (Syifa)
 	bar := ""
 	for i := 0; i < 20; i++ {
 		bar += "█"
@@ -177,12 +174,12 @@ func animasiSplash() {
 	sleep(400)
 }
 
-// cetakDivider mencetak garis pemisah berwarna (claude)
+// cetakDivider mencetak garis pemisah berwarna (Angelina)
 func cetakDivider(char string, lebar int, warna string) {
 	fmt.Println(colorize(warna, strings.Repeat(char, lebar)))
 }
 
-// cetakHeaderSection menampilkan header section dengan dekorasi (claude)
+// cetakHeaderSection menampilkan header section dengan dekorasi (Putri)
 func cetakHeaderSection(judul, icon string) {
 	fmt.Println()
 	cetakDivider("─", 60, Cyan)
@@ -190,7 +187,7 @@ func cetakHeaderSection(judul, icon string) {
 	cetakDivider("─", 60, Cyan)
 }
 
-// cetakMainMenu menampilkan menu utama dengan tampilan menarik (claude)
+// cetakMainMenu menampilkan menu utama dengan tampilan menarik (Syifa)
 func cetakMainMenu() {
 	clearScreen()
 	fmt.Println()
@@ -202,7 +199,7 @@ func cetakMainMenu() {
 	cetakDivider("═", 62, BrightYellow)
 	fmt.Println()
 
-	// mendefinisikan item-item menu utama dengan ikon dan warna (claude)
+	// mendefinisikan item-item menu utama dengan ikon dan warna (Angelina)
 	type itemMenu struct{ num, icon, label, warna string }
 	menuItems := []itemMenu{
 		{"1", "📋", "Tampilkan Semua Menu", BrightGreen},
@@ -215,7 +212,7 @@ func cetakMainMenu() {
 		{"0", "🚪", "Keluar", Dim + White},
 	}
 
-	// menampilkan setiap item menu utama dengan warna dan ikon (claude)
+	// menampilkan setiap item menu utama dengan warna dan ikon (Putri)
 	for _, item := range menuItems {
 		fmt.Printf("  %s %s  %s\n",
 			colorize(BgBrightBlack+item.warna+Bold, " "+item.num+" "),
@@ -230,7 +227,7 @@ func cetakMainMenu() {
 
 // ===================== TAMPILAN KARTU MENU =====================
 
-// ikonKategori mengembalikan emoji yang sesuai dengan kategori menu (claude)
+// ikonKategori mengembalikan emoji yang sesuai dengan kategori menu (Syifa)
 func ikonKategori(kat string) string {
 	switch strings.ToLower(kat) {
 	case "coffee":
@@ -248,7 +245,7 @@ func ikonKategori(kat string) string {
 	}
 }
 
-// warnaKategori mengembalikan kode warna ANSI yang sesuai kategori (claude)
+// warnaKategori mengembalikan kode warna ANSI yang sesuai kategori (Angelina)
 func warnaKategori(kat string) string {
 	switch strings.ToLower(kat) {
 	case "coffee":
@@ -264,7 +261,7 @@ func warnaKategori(kat string) string {
 	}
 }
 
-// cetakKartuMenu menampilkan satu item menu dalam format kartu dengan bingkai (claude)
+// cetakKartuMenu menampilkan satu item menu dalam format kartu dengan bingkai (Putri)
 func cetakKartuMenu(m MenuItem, nomor int) {
 	wKat := warnaKategori(m.Kategori)
 	ikKat := ikonKategori(m.Kategori)
@@ -274,13 +271,13 @@ func cetakKartuMenu(m MenuItem, nomor int) {
 		statusStr = colorize(BrightRed, "○ HABIS   ")
 	}
 
-	// memotong komposisi jika melebihi 44 karakter agar tidak merusak tampilan (claude)
+	// memotong komposisi jika melebihi 44 karakter agar tidak merusak tampilan (Syifa)
 	komposisi := m.Komposisi
 	if len(komposisi) > 44 {
 		komposisi = komposisi[:41] + "..."
 	}
 
-	// mencetak bingkai kartu menu menggunakan unicode box drawing characters (claude)
+	// mencetak bingkai kartu menu menggunakan unicode box drawing characters (Angelina)
 	fmt.Printf("  %s\n", colorize(wKat, "┌─────────────────────────────────────────────────────┐"))
 	fmt.Printf("  %s  %s  %s%s\n",
 		colorize(wKat, "│"),
@@ -310,13 +307,13 @@ func cetakKartuMenu(m MenuItem, nomor int) {
 	)
 	fmt.Printf("  %s\n", colorize(wKat, "└─────────────────────────────────────────────────────┘"))
 
-	// memberikan jarak antar setiap 2 kartu (claude)
+	// memberikan jarak antar setiap 2 kartu (Putri)
 	if nomor%2 == 0 {
 		fmt.Println()
 	}
 }
 
-// cetakDaftarMenu menampilkan semua menu dalam slice sebagai kartu (claude)
+// cetakDaftarMenu menampilkan semua menu dalam slice sebagai kartu (Syifa)
 func cetakDaftarMenu(list []MenuItem) {
 	if len(list) == 0 {
 		fmt.Println()
@@ -324,7 +321,7 @@ func cetakDaftarMenu(list []MenuItem) {
 		return
 	}
 	fmt.Println()
-	// melakukan perulangan untuk menampilkan setiap kartu menu (claude)
+	// melakukan perulangan untuk menampilkan setiap kartu menu (Angelina)
 	for i, m := range list {
 		cetakKartuMenu(m, i+1)
 	}
@@ -333,7 +330,7 @@ func cetakDaftarMenu(list []MenuItem) {
 
 // ===================== CRUD MENU =====================
 
-// tambahMenu menambahkan menu baru ke dalam daftarMenu (claude)
+// tambahMenu menambahkan menu baru ke dalam daftarMenu (Putri)
 func tambahMenu() {
 	cetakHeaderSection("TAMBAH MENU BARU", "➕")
 
@@ -371,7 +368,7 @@ func tambahMenu() {
 	cetakDivider("─", 60, BrightGreen)
 }
 
-// ubahMenu mengubah data menu yang sudah ada berdasarkan ID yang dipilih (claude)
+// ubahMenu mengubah data menu yang sudah ada berdasarkan ID yang dipilih (Syifa)
 func ubahMenu() {
 	cetakHeaderSection("UBAH DATA MENU", "✏️")
 
@@ -383,7 +380,7 @@ func ubahMenu() {
 
 	id := bacaInt("Masukkan ID menu yang ingin diubah: ")
 
-	// mencari posisi menu di dalam slice berdasarkan ID (claude)
+	// mencari posisi menu di dalam slice berdasarkan ID (Angelina)
 	idx := -1
 	for i, m := range daftarMenu {
 		if m.ID == id {
@@ -402,7 +399,7 @@ func ubahMenu() {
 	fmt.Println(colorize(Dim, "  (Tekan Enter untuk melewati / tidak mengubah field)"))
 	fmt.Println()
 
-	// memperbarui setiap field jika pengguna memberikan input baru (claude)
+	// memperbarui setiap field jika pengguna memberikan input baru (Putri)
 	nama := bacaString(fmt.Sprintf("Nama Menu [%s]: ", m.Nama))
 	if nama != "" {
 		m.Nama = nama
@@ -427,7 +424,7 @@ func ubahMenu() {
 	fmt.Printf("  %s Data menu ID #%02d berhasil diperbarui!\n", colorize(BrightGreen, "✓"), id)
 }
 
-// hapusMenu menghapus menu dari daftarMenu berdasarkan ID (claude)
+// hapusMenu menghapus menu dari daftarMenu berdasarkan ID (Syifa)
 func hapusMenu() {
 	cetakHeaderSection("HAPUS MENU", "🗑")
 
@@ -439,7 +436,7 @@ func hapusMenu() {
 
 	id := bacaInt("Masukkan ID menu yang ingin dihapus: ")
 
-	// membangun slice baru tanpa elemen yang akan dihapus (claude)
+	// membangun slice baru tanpa elemen yang akan dihapus (Angelina)
 	found := false
 	var namaHapus string
 	newList := []MenuItem{}
@@ -470,7 +467,7 @@ func hapusMenu() {
 	}
 }
 
-// tampilkanSemuaMenu menampilkan seluruh isi daftarMenu (claude)
+// tampilkanSemuaMenu menampilkan seluruh isi daftarMenu (Putri)
 func tampilkanSemuaMenu() {
 	cetakHeaderSection("SEMUA MENU", "📋")
 	cetakDaftarMenu(daftarMenu)
@@ -478,10 +475,10 @@ func tampilkanSemuaMenu() {
 
 // ===================== PENCARIAN =====================
 
-// sequentialSearch mencari menu berdasarkan kategori dari awal hingga akhir (claude)
+// sequentialSearch mencari menu berdasarkan kategori dari awal hingga akhir (Syifa)
 func sequentialSearch(kategori string) []MenuItem {
 	hasil := []MenuItem{}
-	// melakukan perulangan satu per satu dari indeks pertama hingga terakhir (claude)
+	// melakukan perulangan satu per satu dari indeks pertama hingga terakhir (Angelina)
 	for _, m := range daftarMenu {
 		if strings.EqualFold(m.Kategori, kategori) {
 			hasil = append(hasil, m)
@@ -490,14 +487,14 @@ func sequentialSearch(kategori string) []MenuItem {
 	return hasil
 }
 
-// binarySearch mencari menu berdasarkan kategori menggunakan algoritma biner (claude)
+// binarySearch mencari menu berdasarkan kategori menggunakan algoritma biner (Putri)
 // slice diurutkan sementara sebelum pencarian dilakukan
 func binarySearch(kategori string) []MenuItem {
-	// membuat salinan slice dan mengurutkannya berdasarkan kategori (claude)
+	// membuat salinan slice dan mengurutkannya berdasarkan kategori (Syifa)
 	sorted := make([]MenuItem, len(daftarMenu))
 	copy(sorted, daftarMenu)
 
-	// mengurutkan salinan secara abjad berdasarkan kategori menggunakan insertion sort (claude)
+	// mengurutkan salinan secara abjad berdasarkan kategori menggunakan insertion sort (Angelina)
 	for i := 1; i < len(sorted); i++ {
 		key := sorted[i]
 		j := i - 1
@@ -508,7 +505,7 @@ func binarySearch(kategori string) []MenuItem {
 		sorted[j+1] = key
 	}
 
-	// melakukan binary search untuk menemukan indeks yang cocok (claude)
+	// melakukan binary search untuk menemukan indeks yang cocok (Putri)
 	low, high, foundIdx := 0, len(sorted)-1, -1
 	for low <= high {
 		mid := (low + high) / 2
@@ -527,7 +524,7 @@ func binarySearch(kategori string) []MenuItem {
 		return []MenuItem{}
 	}
 
-	// mengumpulkan seluruh elemen dengan kategori sama di sekitar foundIdx (claude)
+	// mengumpulkan seluruh elemen dengan kategori sama di sekitar foundIdx (Syifa)
 	hasil := []MenuItem{}
 	left := foundIdx
 	for left > 0 && strings.EqualFold(sorted[left-1].Kategori, kategori) {
@@ -543,7 +540,7 @@ func binarySearch(kategori string) []MenuItem {
 	return hasil
 }
 
-// menuCari menampilkan UI sub-menu pencarian (claude)
+// menuCari menampilkan UI sub-menu pencarian (Angelina)
 func menuCari() {
 	cetakHeaderSection("CARI MENU", "🔍")
 	fmt.Println()
@@ -564,7 +561,7 @@ func menuCari() {
 	fmt.Println(colorize(Dim, "  Contoh: coffee, non-coffee, makanan, dessert, snack"))
 	kategori := strings.ToLower(bacaString("Masukkan kategori yang dicari: "))
 
-	// menampilkan animasi titik-titik saat mencari (claude)
+	// menampilkan animasi titik-titik saat mencari (Putri)
 	fmt.Print(colorize(Cyan, "\n  Mencari"))
 	for i := 0; i < 5; i++ {
 		fmt.Print(colorize(Cyan, "."))
@@ -574,7 +571,7 @@ func menuCari() {
 	var hasil []MenuItem
 	var metode, warnaMetode string
 
-	// memilih dan menjalankan algoritma pencarian sesuai input (claude)
+	// memilih dan menjalankan algoritma pencarian sesuai input (Syifa)
 	if pilihan == 1 {
 		hasil = sequentialSearch(kategori)
 		metode = "Sequential Search"
@@ -599,28 +596,32 @@ func menuCari() {
 
 // ===================== PENGURUTAN =====================
 
-// selectionSort mengurutkan slice menu berdasarkan harga dari terkecil ke terbesar (claude)
+// selectionSort mengurutkan slice menu berdasarkan harga dari terkecil ke terbesar (Angelina)
 func selectionSort(list []MenuItem) []MenuItem {
 	n := len(list)
-	// melakukan perulangan sebanyak n-1 kali untuk selection sort (claude)
+	// melakukan perulangan sebanyak n-1 kali untuk selection sort (Putri)
 	for i := 0; i < n-1; i++ {
 		minIdx := i
-		// mencari elemen dengan harga minimum dari posisi i+1 hingga akhir (claude)
+		// mencari elemen dengan harga minimum dari posisi i+1 hingga akhir (Syifa)
 		for j := i + 1; j < n; j++ {
 			if list[j].Harga < list[minIdx].Harga {
 				minIdx = j
 			}
 		}
+		// menukar elemen minimum ke posisi i (Angelina)
 		list[i], list[minIdx] = list[minIdx], list[i]
 	}
 	return list
 }
 
+// insertionSort mengurutkan slice menu berdasarkan harga dengan metode penyisipan (Putri)
 func insertionSort(list []MenuItem) []MenuItem {
 	n := len(list)
+	// melakukan perulangan mulai dari indeks ke-1 untuk insertion sort (Syifa)
 	for i := 1; i < n; i++ {
 		key := list[i]
 		j := i - 1
+		// menggeser elemen yang lebih besar dari key ke posisi berikutnya (Angelina)
 		for j >= 0 && list[j].Harga > key.Harga {
 			list[j+1] = list[j]
 			j--
@@ -630,6 +631,7 @@ func insertionSort(list []MenuItem) []MenuItem {
 	return list
 }
 
+// menuUrut menampilkan UI sub-menu pengurutan harga (Putri)
 func menuUrut() {
 	cetakHeaderSection("URUTKAN MENU BERDASARKAN HARGA", "📊")
 	fmt.Println()
@@ -647,11 +649,13 @@ func menuUrut() {
 
 	pilihan := bacaInt("Pilih metode (1/2): ")
 
+	// membuat salinan slice agar urutan asli tidak berubah (Syifa)
 	salinan := make([]MenuItem, len(daftarMenu))
 	copy(salinan, daftarMenu)
 
 	var metode, warnaMetode string
 
+	// menentukan dan menjalankan algoritma sorting sesuai pilihan (Angelina)
 	if pilihan == 1 {
 		salinan = selectionSort(salinan)
 		metode = "Selection Sort"
@@ -665,6 +669,7 @@ func menuUrut() {
 		return
 	}
 
+	// animasi proses pengurutan sebelum hasil ditampilkan (Putri)
 	fmt.Print(colorize(Cyan, "\n  Mengurutkan"))
 	for i := 0; i < 5; i++ {
 		fmt.Print(colorize(Cyan, "."))
@@ -677,9 +682,13 @@ func menuUrut() {
 	cetakDaftarMenu(salinan)
 }
 
+// ===================== STATISTIK =====================
+
+// tampilkanStatistik menampilkan statistik jumlah menu per kategori dan rata-rata harga (Syifa)
 func tampilkanStatistik() {
 	clearScreen()
 	fmt.Println()
+	// menampilkan header statistik dengan format +++ nama aplikasi +++ (Angelina)
 	cetakDivider("═", 62, BrightYellow)
 	fmt.Println(colorize(BrightYellow+Bold, "  +++ Cafe-Menu +++  —  STATISTIK LENGKAP"))
 	cetakDivider("═", 62, BrightYellow)
@@ -689,11 +698,13 @@ func tampilkanStatistik() {
 		return
 	}
 
+	// menggunakan map untuk menghitung jumlah dan total harga per kategori (Putri)
 	kategoriCount := make(map[string]int)
 	kategoriTotal := make(map[string]float64)
 	var totalHarga float64
 	totalTersedia := 0
 
+	// melakukan iterasi seluruh menu untuk mengumpulkan data statistik (Syifa)
 	for _, m := range daftarMenu {
 		kategoriCount[m.Kategori]++
 		kategoriTotal[m.Kategori] += m.Harga
@@ -703,10 +714,12 @@ func tampilkanStatistik() {
 		}
 	}
 
+	// menghitung nilai rata-rata dan status ketersediaan (Angelina)
 	rataRata := math.Round(totalHarga/float64(len(daftarMenu))*100) / 100
 	totalTidakTersedia := len(daftarMenu) - totalTersedia
 
 	fmt.Println()
+	// menampilkan ringkasan angka utama dalam kotak info (Putri)
 	fmt.Println(colorize(Cyan, "  ┌─────────────────────────────────────────────────────┐"))
 	fmt.Printf("  %s  %-28s  %s\n", colorize(Cyan, "│"), "📦 Total Semua Menu",
 		colorize(BrightWhite+Bold, fmt.Sprintf("%d item", len(daftarMenu)))+colorize(Cyan, "                    │"))
@@ -724,6 +737,7 @@ func tampilkanStatistik() {
 	fmt.Println(colorize(Dim, "  │ Kategori               │ Total │ Rata-rata Harga  │"))
 	fmt.Println(colorize(Dim, "  ├────────────────────────┼───────┼──────────────────┤"))
 
+	// menampilkan baris statistik untuk setiap kategori (Syifa)
 	for kat, count := range kategoriCount {
 		rataKat := math.Round(kategoriTotal[kat]/float64(count)*100) / 100
 		wKat := warnaKategori(kat)
@@ -739,12 +753,14 @@ func tampilkanStatistik() {
 	}
 	fmt.Println(colorize(Dim, "  └────────────────────────┴───────┴──────────────────┘"))
 
+	// menampilkan bar chart proporsi menu per kategori (Angelina)
 	fmt.Println()
 	fmt.Println(colorize(BrightBlue+Bold, "  📊 Proporsi Menu (Bar Chart):"))
 	fmt.Println()
+	// menghitung dan menampilkan bar untuk setiap kategori (Putri)
 	for kat, count := range kategoriCount {
 		persen := float64(count) / float64(len(daftarMenu)) * 100
-		// menghitung panjang bar berdasarkan persentase dibagi 3 (claude)
+		// menghitung panjang bar berdasarkan persentase dibagi 3 (Syifa)
 		barLen := int(persen / 3)
 		if barLen < 1 {
 			barLen = 1
@@ -767,6 +783,9 @@ func tampilkanStatistik() {
 	cetakDivider("═", 62, BrightYellow)
 }
 
+// ===================== DATA CONTOH =====================
+
+// isiDataContoh mengisi daftarMenu dengan data awal yang realistis (Angelina)
 func isiDataContoh() {
 	contoh := []MenuItem{
 		{ID: nextID, Nama: "Espresso", Kategori: "coffee", Harga: 18000, Komposisi: "espresso shot, air panas", Tersedia: true},
@@ -784,8 +803,10 @@ func isiDataContoh() {
 	nextID += len(contoh)
 }
 
+// ===================== MAIN =====================
 
 func main() {
+	// mengisi data contoh dan menjalankan animasi splash saat aplikasi dimulai (Putri)
 	isiDataContoh()
 	animasiSplash()
 
@@ -793,6 +814,7 @@ func main() {
 		cetakMainMenu()
 		pilihan := bacaInt("Pilihan Anda: ")
 
+		// menjalankan fungsi berdasarkan pilihan dari menu utama (Syifa)
 		switch pilihan {
 		case 1:
 			tampilkanSemuaMenu()
